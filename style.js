@@ -12,7 +12,8 @@ const style = StyleSheet.create({
     borderRadius: 3,
     padding: 5,
     alignItems: "center",
-    backgroundColor: "#00aebe"
+    backgroundColor: "#00aebe",
+    padding: 20
   }
 });
 
