@@ -3,22 +3,27 @@ import React from 'react';
 import { StackNavigator } from 'react-navigation';
 
 import MainTabNavigator from './MainTabNavigator';
-import { ConnectAccount } from '../Components';
+import { TempForm } from '../Components';
+import FormBuilderScreen from '../Components/Screens/FormBuilder';
 
 const RootStackNavigator = StackNavigator(
   {
     Main: {
       screen: MainTabNavigator
     },
-    ConnectAccount: {
-      screen: ConnectAccount
+    Form: {
+      screen: TempForm // to fill in form
+    },
+    FormBuilder: {
+      screen: FormBuilderScreen
     }
   },
   {
     navigationOptions: () => ({
       headerTitleStyle: {
         fontWeight: 'normal'
-      }
+      },
+      title: 'Fat Fingers Unleashed'
     })
   }
 );

@@ -28,7 +28,6 @@ const defaultItem = { name: '', description: '', inputType: '' };
 class FormBuilder extends React.Component {
   static navigationOptions = {
     title: 'Form Builder'
-    // headerRight: <Button title="Info" />
   };
 
   state = {

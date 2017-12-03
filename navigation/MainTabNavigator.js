@@ -1,16 +1,19 @@
 import React from 'react';
 import { Platform, TouchableOpacity, Text } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { TabNavigator, TabBarBottom } from 'react-navigation';
+import { Ionicons, EvilIcons } from '@expo/vector-icons';
+import { TabNavigator, StackNavigator, TabBarBottom } from 'react-navigation';
 
 import Colors from '../constants/Colors';
 
-import FormBuilderScreen from '../Components/Screens/FormBuilder';
+import { ConnectAccount, FormList } from '../Components';
 
 export default TabNavigator(
   {
-    FormBuilder: {
-      screen: FormBuilderScreen
+    Forms: {
+      screen: FormList
+    },
+    ConnectAccount: {
+      screen: ConnectAccount
     }
   },
   {
@@ -18,33 +21,28 @@ export default TabNavigator(
       tabBarIcon: ({ focused }) => {
         const { routeName } = navigation.state;
         let iconName;
+        let Icon = Ionicons;
         switch (routeName) {
-          case 'FormBuilder':
+          case 'Forms':
             iconName =
               Platform.OS === 'ios'
                 ? `ios-information-circle${focused ? '' : '-outline'}`
                 : 'md-information-circle';
             break;
+          case 'ConnectAccount':
+            Icon = EvilIcons;
+            iconName = 'gear';
+            break;
         }
         return (
-          <Ionicons
+          <Icon
             name={iconName}
             size={28}
             style={{ marginBottom: -3 }}
             color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
           />
         );
-      },
-      headerRight: (
-        <TouchableOpacity
-          style={{ marginRight: 10 }}
-          onPress={() =>
-            navigation.navigate('ConnectAccount', { user: 'Lucy' })
-          }
-        >
-          <Text>Connect</Text>
-        </TouchableOpacity>
-      )
+      }
     }),
     tabBarComponent: TabBarBottom,
     tabBarPosition: 'bottom',

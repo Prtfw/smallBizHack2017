@@ -1,10 +1,42 @@
 import React from 'react';
-import { Text, View, Button, Alert } from 'react-native';
+import {
+  Text,
+  View,
+  Button,
+  Alert,
+  StyleSheet,
+  TouchableOpacity
+} from 'react-native';
 import { getUser } from '../../helpers/storage';
 import QBClient, { fetchTokenWithRefreshToken } from '../../helpers/quickbooks';
 const qbClient = new QBClient();
 
+const styles = StyleSheet.create({
+  button: {
+    borderRadius: 3,
+    paddingVertical: 5,
+    paddingHorizontal: 12,
+    alignItems: 'center',
+    backgroundColor: '#00aebe',
+    marginBottom: 12
+  },
+  buttonText: {
+    color: '#fff'
+  }
+});
+
+const CustomButton = props => {
+  return (
+    <TouchableOpacity style={styles.button} onPress={props.onPress}>
+      <Text style={styles.buttonText}>{props.title}</Text>
+    </TouchableOpacity>
+  );
+};
+
 export default class ConnectAccount extends React.Component {
+  static navigationOptions = {
+    title: 'Settings'
+  };
   state = { user: null };
 
   async componentDidMount() {
@@ -21,17 +53,22 @@ export default class ConnectAccount extends React.Component {
     const connected =
       user && user.qb && user.qb.realmId && user.qb.refresh_token;
     return (
-      <View style={{ flex: 1 }}>
-        {connected && (
-          <Button
-            onPress={this._makeRequest}
-            title={'Make a Request to the QB API'}
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <View>
+          {connected && (
+            <CustomButton
+              onPress={this._makeRequest}
+              title={'Test Quickbooks API'}
+            />
+          )}
+          {connected && (
+            <CustomButton onPress={this._refreshToken} title={'Test Refresh'} />
+          )}
+          <CustomButton
+            onPress={this._connectIntuit}
+            title={'Connect to QuickBooks'}
           />
-        )}
-        {connected && (
-          <Button onPress={this._refreshToken} title={'Test Refresh'} />
-        )}
-        <Button onPress={this._connectIntuit} title={'Connect to QuickBooks'} />
+        </View>
       </View>
     );
   }
