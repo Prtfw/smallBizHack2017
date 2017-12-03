@@ -60,6 +60,7 @@ class FormList extends React.Component {
     forms: [
       {
         name: 'Form 1',
+        goToHardCoded: true,
         schema: [
           {
             name: 'hasBackend',
@@ -139,7 +140,11 @@ class FormList extends React.Component {
     );
   }
   openForm = formSchema => {
-    this.props.navigation.navigate('Form', formSchema);
+    if (formSchema.goToHardCoded) {
+      this.props.navigation.navigate('FormDetail', formSchema);
+    } else {
+      this.props.navigation.navigate('Form', formSchema);
+    }
   };
 
   openFormBuilder = () => {

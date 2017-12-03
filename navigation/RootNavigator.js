@@ -3,9 +3,8 @@ import React from 'react';
 import { StackNavigator } from 'react-navigation';
 
 import MainTabNavigator from './MainTabNavigator';
-import { TempForm } from '../Components';
+import { TempForm, FormDetail } from '../Components';
 import FormBuilderScreen from '../Components/Screens/FormBuilder';
-
 const RootStackNavigator = StackNavigator(
   {
     Main: {
@@ -16,6 +15,9 @@ const RootStackNavigator = StackNavigator(
     },
     FormBuilder: {
       screen: FormBuilderScreen
+    },
+    FormDetail: {
+      screen: FormDetail
     }
   },
   {

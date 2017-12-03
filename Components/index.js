@@ -10,4 +10,4 @@ export FormList from './Screens/FormList';
 
 export TempForm from './Screens/TempForm';
 
-// export FormDetail from './Screens/FormDetail';
+export FormDetail from './Screens/FormDetail';
