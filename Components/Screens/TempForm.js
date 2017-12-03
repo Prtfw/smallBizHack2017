@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Text,
   View,
@@ -7,11 +7,12 @@ import {
   ScrollView,
   KeyboardAvoidingView,
   Linking
-} from 'react-native';
-const t = require('tcomb-form-native');
+} from "react-native";
+const t = require("tcomb-form-native");
 const Form = t.form.Form;
 
-import CreateButton from '../CreateButton';
+import CreateButton from "../CreateButton";
+import AddButton from "../AddButton";
 
 export default class TempForm extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -25,7 +26,7 @@ export default class TempForm extends React.Component {
     var options = {
       fields: {
         name: {
-          help: 'Your help message here'
+          help: "Your help message here"
         }
       }
     };
@@ -60,7 +61,7 @@ export default class TempForm extends React.Component {
       <KeyboardAvoidingView
         style={{
           flex: 1,
-          backgroundColor: '#fff'
+          backgroundColor: "#fff"
         }}
         behavior="padding"
         keyboardVerticalOffset={64}
@@ -74,8 +75,8 @@ export default class TempForm extends React.Component {
           }}
         >
           <Form type={type} options={options} />
-          <CreateButton
-            title={'Generate Quote'}
+          <AddButton
+            title={"Generate Quote"}
             onPress={() => this.createQuoteButtonPressed()}
           />
           <Text
@@ -85,9 +86,9 @@ export default class TempForm extends React.Component {
               opacity: this.state.quoteOpacity
             }}
           >
-            {'Your quote is $7500'}
+            {"Your quote is $7500"}
           </Text>
-          <CreateButton title={'Pay link'} onPress={() => this.showPayView()} />
+          <CreateButton title={"Pay link"} onPress={() => this.showPayView()} />
         </ScrollView>
       </KeyboardAvoidingView>
     );
@@ -99,7 +100,7 @@ export default class TempForm extends React.Component {
 
   showPayView = () => {
     const url =
-      'https://connect.squareup.com/v2/checkout?c=CBASENS8gJhk0OHXOXn8cn3oJtEgAQ&l=CBASEIqTooINQnShc9Y1kEhwJcEgAQ';
-    Linking.openURL(url).catch(err => console.error('An error occurred', err));
+      "https://connect.squareup.com/v2/checkout?c=CBASENS8gJhk0OHXOXn8cn3oJtEgAQ&l=CBASEIqTooINQnShc9Y1kEhwJcEgAQ";
+    Linking.openURL(url).catch(err => console.error("An error occurred", err));
   };
 }

@@ -1,5 +1,5 @@
-import React from 'react';
-const t = require('tcomb-form-native');
+import React from "react";
+const t = require("tcomb-form-native");
 const Form = t.form.Form;
 
 import {
@@ -9,10 +9,10 @@ import {
   Alert,
   ScrollView,
   KeyboardAvoidingView
-} from 'react-native';
-import FormItem from '../FormItem';
-import AddButton from '../AddButton';
-import CreateButton from '../CreateButton';
+} from "react-native";
+import FormItem from "../FormItem";
+import AddButton from "../AddButton";
+import CreateButton from "../CreateButton";
 
 // const Person = t.struct({
 //   name: t.String, // a required string
@@ -23,7 +23,7 @@ import CreateButton from '../CreateButton';
 
 const options = {}; // optional rendering options (see documentation)
 
-const defaultItem = { name: '', description: '', inputType: '' };
+const defaultItem = { name: "", description: "", inputType: "" };
 
 class FormBuilder extends React.Component {
   state = {
@@ -52,10 +52,9 @@ class FormBuilder extends React.Component {
       <KeyboardAvoidingView
         style={{
           flex: 1,
-          backgroundColor: '#fff'
+          backgroundColor: "#fff"
         }}
         behavior="padding"
-        keyboardVerticalOffset={64}
       >
         <ScrollView
           style={{
@@ -76,9 +75,9 @@ class FormBuilder extends React.Component {
 
           <AddButton
             onPress={() => this.addFormItem()}
-            title={'Add new item'}
+            title={"Add new item"}
           />
-          <AddButton onPress={() => this.createForm()} title={'Create form'} />
+          <AddButton onPress={() => this.createForm()} title={"Create form"} />
         </ScrollView>
       </KeyboardAvoidingView>
     );
