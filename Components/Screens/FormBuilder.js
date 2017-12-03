@@ -9,9 +9,9 @@ import {
   ScrollView,
   KeyboardAvoidingView
 } from "react-native";
-import FormItem from "./FormItem";
-import AddButton from "./AddButton";
-import CreateButton from "./CreateButton";
+import FormItem from "../FormItem";
+import AddButton from "../AddButton";
+import CreateButton from "../CreateButton";
 
 const Person = t.struct({
   name: t.String, // a required string
