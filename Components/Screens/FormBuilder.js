@@ -1,6 +1,7 @@
 import React from "react";
 const t = require("tcomb-form-native");
 const Form = t.form.Form;
+
 import {
   Text,
   View,
