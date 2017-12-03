@@ -36,6 +36,10 @@ class HomeScreen extends React.Component {
     }
   }
 
+  onCreateForm = form => {
+    console.log(form);
+  };
+
   render() {
     const { user } = this.state;
     const connected =
@@ -53,7 +57,7 @@ class HomeScreen extends React.Component {
         )}
         <Button onPress={this._connectIntuit} title={'Connect to QuickBooks'} />
         <Button onPress={this._skip} title={'Skip'} /> */}
-        <FormBuilder />
+        <FormBuilder onCreateForm={form => this.onCreateForm(form)} />
       </View>
     );
   }

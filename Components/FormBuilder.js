@@ -11,6 +11,8 @@ import {
 } from "react-native";
 import FormItem from "./FormItem";
 import AddButton from "./AddButton";
+import CreateButton from "./CreateButton";
+
 const Person = t.struct({
   name: t.String, // a required string
   surname: t.maybe(t.String), // an optional string
@@ -38,13 +40,18 @@ class FormBuilder extends React.Component {
     this.setState({ formItems: items });
   };
 
+  createForm = () => {
+    this.props.onCreateForm(this.state.formItems);
+    this.setState({ formItems: [defaultItem] });
+  };
+
   onChange = (formItem, index) => {
-    console.log(formItem.name, formItem.description, formItem.inputType, index);
-    this.setState({ formItems: [formItem] });
+    const items = this.state.formItems;
+    items[index] = formItem;
+    this.setState({ formItems: items });
   };
 
   render() {
-    console.log(this.state);
     return (
       <KeyboardAvoidingView
         style={{
@@ -76,6 +83,10 @@ class FormBuilder extends React.Component {
           <AddButton
             onPress={() => this.addFormItem()}
             title={"Add new item"}
+          />
+          <CreateButton
+            onPress={() => this.createForm()}
+            title={"Create form"}
           />
         </ScrollView>
       </KeyboardAvoidingView>
