@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import FormDetailItem from '../FormDetailItem';
 import CreateButton from '../CreateButton';
+import AddButton from "../AddButton";
 
 const options = {
   fields: {
@@ -79,8 +80,8 @@ class FormDetail extends React.Component {
               text={'test'}
             />
           ))}
-          <CreateButton
-            title={'Generate Quote'}
+          <AddButton
+            title={"Generate Quote"}
             onPress={() => this.createQuoteButtonPressed()}
           />
           <Text
