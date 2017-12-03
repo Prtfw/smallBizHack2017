@@ -12,7 +12,7 @@ import {
 
 var InputType = t.enums({
   checkbox: "Checkbox",
-  boolean: "Boolean",
+  numberInput: "Number Input",
   textInput: "Text Input",
   multipleChoice: "Multiple Choice"
 });
@@ -22,8 +22,6 @@ var Item = t.struct({
   description: t.maybe(t.String),
   inputType: InputType // enum
 });
-
-const options = {}; // optional rendering options (see documentation)
 
 class FormItem extends React.Component {
   state = {
@@ -37,6 +35,7 @@ class FormItem extends React.Component {
           value={this.props.value}
           type={Item}
           onChange={this.props.onChange}
+          options={this.props.options}
         />
       </View>
     );
