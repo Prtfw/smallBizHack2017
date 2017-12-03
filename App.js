@@ -1,7 +1,8 @@
 import React from 'react';
 const t = require('tcomb-form-native');
 const Form = t.form.Form;
-import { Text, View, Button, Alert } from 'react-native';
+import { Text, View, Button, Alert, TouchableOpacity } from 'react-native';
+import styles from './styles/style';
 
 import { StackNavigator } from 'react-navigation';
 
@@ -41,7 +42,7 @@ class HomeScreen extends React.Component {
     const connected =
       user && user.qb && user.qb.realmId && user.qb.refresh_token;
     return (
-      <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}>
+      <View style={[styles.container]}>
         {/* {connected && (
           <Button
             onPress={this._makeRequest}
@@ -51,9 +52,10 @@ class HomeScreen extends React.Component {
         {connected && (
           <Button onPress={this._refreshToken} title={'Test Refresh'} />
         )}
-        <Button onPress={this._connectIntuit} title={'Connect to QuickBooks'} />
-        <Button onPress={this._skip} title={'Skip'} /> */}
+      <Button onPress={this._skip} title={'Skip'} /> */}
+        <TouchableOpacity style={styles.button} />
         <Form ref="form" type={Person} options={options} />
+        
       </View>
     );
   }
