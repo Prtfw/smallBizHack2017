@@ -1,12 +1,13 @@
 import React from "react";
 const t = require("tcomb-form-native");
 const Form = t.form.Form;
-import { Text, View, Button, Alert } from "react-native";
+import { Text, TouchableOpacity, View, Button, Alert } from "react-native";
 import { StackNavigator } from "react-navigation";
 import { IntuitAuth, Main, FormBuilder } from "./Components";
 import RootNavigator from "./navigation/RootNavigator";
 import { getUser } from "./helpers/storage";
 import QBClient, { fetchTokenWithRefreshToken } from "./helpers/quickbooks";
+import style from './style';
 const qbClient = new QBClient();
 
 const Person = t.struct({
@@ -39,7 +40,7 @@ class App extends React.Component {
     const connected =
       user && user.qb && user.qb.realmId && user.qb.refresh_token;
     return (
-      <View style={{ flex: 1 }}>
+      <View style={[style.container]}>
         {/* {connected && (
           <Button
             onPress={this._makeRequest}
@@ -50,9 +51,20 @@ class App extends React.Component {
           <Button onPress={this._refreshToken} title={'Test Refresh'} />
         )}
         <Button onPress={this._connectIntuit} title={'Connect to QuickBooks'} />
-        <Button onPress={this._skip} title={'Skip'} /> */}
+      <Button onPress={this._skip} title={'Skip'} /> */}
+        <Text style={{color: '#4a4a4a', fontWeight: 'bold'}}> 
+          This is a header color
+        </Text>
+        <FormBuilder onCreateForm={form => this.onCreateForm(form)} />
+        <TouchableOpacity style={style.button}>
+          <Text style={{color: 'white'}}>Hello Unicorns</Text>
+        </TouchableOpacity>
 
         <RootNavigator />
+        <Button onPress={this._skip} title={'Skip'}>
+          <Text>Hello</Text>
+        </Button>
+
       </View>
     );
   }
