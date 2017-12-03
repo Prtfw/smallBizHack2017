@@ -51,7 +51,8 @@ class App extends React.Component {
         )}
         <Button onPress={this._connectIntuit} title={'Connect to QuickBooks'} />
         <Button onPress={this._skip} title={'Skip'} /> */}
-        <FormBuilder onCreateForm={form => this.onCreateForm(form)} />
+
+        <RootNavigator />
       </View>
     );
   }
@@ -85,14 +86,3 @@ class App extends React.Component {
 }
 
 export default App;
-// StackNavigator({
-//   Home: {
-//     screen: HomeScreen
-//   },
-//   Login: {
-//     screen: IntuitAuth
-//   },
-//   Main: {
-//     screen: Main
-//   }
-// });
