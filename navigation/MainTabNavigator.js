@@ -1,20 +1,19 @@
-import React from "react";
-import { Platform } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
-import { TabNavigator, TabBarBottom } from "react-navigation";
+import React from 'react';
+import { Platform, TouchableOpacity, Text } from 'react-native';
+import { Ionicons, EvilIcons } from '@expo/vector-icons';
+import { TabNavigator, StackNavigator, TabBarBottom } from 'react-navigation';
 
-import Colors from "../constants/Colors";
+import Colors from '../constants/Colors';
 
-import FormBuilderScreen from "../Components/Screens/FormBuilder";
-import FormDetailScreen from "../Components/Screens/FormDetail";
+import { ConnectAccount, FormList } from '../Components';
 
 export default TabNavigator(
   {
-    FormBuilder: {
-      screen: FormBuilderScreen
+    Forms: {
+      screen: FormList
     },
-    FormDetail: {
-      screen: FormDetailScreen
+    ConnectAccount: {
+      screen: ConnectAccount
     }
   },
   {
@@ -22,22 +21,21 @@ export default TabNavigator(
       tabBarIcon: ({ focused }) => {
         const { routeName } = navigation.state;
         let iconName;
+        let Icon = Ionicons;
         switch (routeName) {
-          case "FormBuilder":
+          case 'Forms':
             iconName =
-              Platform.OS === "ios"
-                ? `ios-information-circle${focused ? "" : "-outline"}`
-                : "md-information-circle";
+              Platform.OS === 'ios'
+                ? `ios-information-circle${focused ? '' : '-outline'}`
+                : 'md-information-circle';
             break;
-          case "FormDetail":
-            iconName =
-              Platform.OS === "ios"
-                ? `ios-information-circle${focused ? "" : "-outline"}`
-                : "md-information-circle";
+          case 'ConnectAccount':
+            Icon = EvilIcons;
+            iconName = 'gear';
             break;
         }
         return (
-          <Ionicons
+          <Icon
             name={iconName}
             size={28}
             style={{ marginBottom: -3 }}
@@ -47,7 +45,7 @@ export default TabNavigator(
       }
     }),
     tabBarComponent: TabBarBottom,
-    tabBarPosition: "bottom",
+    tabBarPosition: 'bottom',
     animationEnabled: false,
     swipeEnabled: false
   }

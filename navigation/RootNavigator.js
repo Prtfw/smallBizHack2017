@@ -1,20 +1,31 @@
-import { Notifications } from "expo";
-import React from "react";
-import { StackNavigator } from "react-navigation";
+import { Notifications } from 'expo';
+import React from 'react';
+import { StackNavigator } from 'react-navigation';
 
-import MainTabNavigator from "./MainTabNavigator";
-
+import MainTabNavigator from './MainTabNavigator';
+import { TempForm, FormDetail } from '../Components';
+import FormBuilderScreen from '../Components/Screens/FormBuilder';
 const RootStackNavigator = StackNavigator(
   {
     Main: {
       screen: MainTabNavigator
+    },
+    Form: {
+      screen: TempForm // to fill in form
+    },
+    FormBuilder: {
+      screen: FormBuilderScreen
+    },
+    FormDetail: {
+      screen: FormDetail
     }
   },
   {
     navigationOptions: () => ({
       headerTitleStyle: {
-        fontWeight: "normal"
-      }
+        fontWeight: 'normal'
+      },
+      title: 'Fat Fingers Unleashed'
     })
   }
 );

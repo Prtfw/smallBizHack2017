@@ -1,5 +1,5 @@
-import React from "react";
-const t = require("tcomb-form-native");
+import React from 'react';
+const t = require('tcomb-form-native');
 const Form = t.form.Form;
 import {
   Text,
@@ -7,27 +7,27 @@ import {
   ScrollView,
   KeyboardAvoidingView,
   Linking
-} from "react-native";
-import FormDetailItem from "../FormDetailItem";
-import CreateButton from "../CreateButton";
+} from 'react-native';
+import FormDetailItem from '../FormDetailItem';
+import CreateButton from '../CreateButton';
 
 const options = {
   fields: {
     inputType: {
-      label: " "
+      label: ' '
     }
   }
 };
 
 const FormItem1 = {
-  infoText: "Is the client annoying?",
+  infoText: 'Is the client annoying?',
   inputThing: t.struct({
     inputType: t.Boolean // a boolean
   })
 };
 
 const FormItem2 = {
-  infoText: "Do they need a data base?",
+  infoText: 'Do they need a data base?',
   inputThing: t.struct({
     inputType: t.Boolean // a boolean
   })
@@ -52,8 +52,8 @@ class FormDetail extends React.Component {
 
   showPayView = () => {
     const url =
-      "https://connect.squareup.com/v2/checkout?c=CBASENS8gJhk0OHXOXn8cn3oJtEgAQ&l=CBASEIqTooINQnShc9Y1kEhwJcEgAQ";
-    Linking.openURL(url).catch(err => console.error("An error occurred", err));
+      'https://connect.squareup.com/v2/checkout?c=CBASENS8gJhk0OHXOXn8cn3oJtEgAQ&l=CBASEIqTooINQnShc9Y1kEhwJcEgAQ';
+    Linking.openURL(url).catch(err => console.error('An error occurred', err));
   };
 
   render() {
@@ -61,7 +61,7 @@ class FormDetail extends React.Component {
       <KeyboardAvoidingView
         style={{
           flex: 1,
-          backgroundColor: "#fff"
+          backgroundColor: '#fff'
         }}
         behavior="padding"
         keyboardVerticalOffset={64}
@@ -71,23 +71,16 @@ class FormDetail extends React.Component {
             flex: 1
           }}
         >
-          <View
-            style={{
-              alignItems: "center",
-              justifyContent: "center",
-              flex: 1
-            }}
-          />
           {this.state.formItems.map((formItem, index) => (
             <FormDetailItem
               key={index}
               value={formItem}
               options={options}
-              text={"test"}
+              text={'test'}
             />
           ))}
           <CreateButton
-            title={"Generate Quote"}
+            title={'Generate Quote'}
             onPress={() => this.createQuoteButtonPressed()}
           />
           <Text
@@ -97,9 +90,9 @@ class FormDetail extends React.Component {
               opacity: this.state.quoteOpacity
             }}
           >
-            {"Your quote is $20,000"}
+            {'Your quote is $20,000'}
           </Text>
-          <CreateButton title={"Pay link"} onPress={() => this.showPayView()} />
+          <CreateButton title={'Pay link'} onPress={() => this.showPayView()} />
         </ScrollView>
       </KeyboardAvoidingView>
     );
