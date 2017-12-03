@@ -33,7 +33,11 @@ class FormItem extends React.Component {
   render() {
     return (
       <View>
-        <Form type={Item} />
+        <Form
+          value={this.props.value}
+          type={Item}
+          onChange={this.props.onChange}
+        />
       </View>
     );
   }

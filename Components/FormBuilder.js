@@ -10,7 +10,7 @@ import {
   KeyboardAvoidingView
 } from "react-native";
 import FormItem from "./FormItem";
-
+import AddButton from "./AddButton";
 const Person = t.struct({
   name: t.String, // a required string
   surname: t.maybe(t.String), // an optional string
@@ -20,16 +20,27 @@ const Person = t.struct({
 
 const options = {}; // optional rendering options (see documentation)
 
+const defaultItem = { name: "", description: "", inputType: "" };
+
 class FormBuilder extends React.Component {
   static navigationOptions = {
     title: "Form Builder"
   };
 
   state = {
-    user: null
+    user: null,
+    formItems: [defaultItem]
+  };
+
+  addFormItem = () => {};
+
+  onChange = (formItem, index) => {
+    console.log(formItem.name, formItem.description, formItem.inputType, index);
+    this.setState({ formItems: [formItem] });
   };
 
   render() {
+    console.log(this.state);
     return (
       <KeyboardAvoidingView
         style={{
@@ -50,7 +61,15 @@ class FormBuilder extends React.Component {
               flex: 1
             }}
           />
-          <FormItem />
+          {this.state.formItems.map((formItem, index) => (
+            <FormItem
+              key={index}
+              value={formItem}
+              onChange={formItem => this.onChange(formItem, index)}
+            />
+          ))}
+
+          <AddButton onPress={() => alert("hi!")} title={"the title"} />
         </ScrollView>
       </KeyboardAvoidingView>
     );
