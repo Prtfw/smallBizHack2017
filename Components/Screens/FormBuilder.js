@@ -56,7 +56,8 @@ class FormBuilder extends React.Component {
     return (
       <KeyboardAvoidingView
         style={{
-          flex: 1
+          flex: 1,
+          backgroundColor: "#fff"
         }}
         behavior="padding"
         keyboardVerticalOffset={64}
