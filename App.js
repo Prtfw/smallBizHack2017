@@ -2,11 +2,9 @@ import React from "react";
 const t = require("tcomb-form-native");
 const Form = t.form.Form;
 import { Text, View, Button, Alert } from "react-native";
-
 import { StackNavigator } from "react-navigation";
-
 import { IntuitAuth, Main, FormBuilder } from "./Components";
-
+import RootNavigator from "./navigation/RootNavigator";
 import { getUser } from "./helpers/storage";
 import QBClient, { fetchTokenWithRefreshToken } from "./helpers/quickbooks";
 const qbClient = new QBClient();
@@ -20,11 +18,7 @@ const Person = t.struct({
 
 const options = {}; // optional rendering options (see documentation)
 
-class HomeScreen extends React.Component {
-  static navigationOptions = {
-    title: "Home"
-  };
-
+class App extends React.Component {
   state = { user: null };
 
   async componentDidMount() {
@@ -90,14 +84,15 @@ class HomeScreen extends React.Component {
   };
 }
 
-export default StackNavigator({
-  Home: {
-    screen: HomeScreen
-  },
-  Login: {
-    screen: IntuitAuth
-  },
-  Main: {
-    screen: Main
-  }
-});
+export default App;
+// StackNavigator({
+//   Home: {
+//     screen: HomeScreen
+//   },
+//   Login: {
+//     screen: IntuitAuth
+//   },
+//   Main: {
+//     screen: Main
+//   }
+// });
