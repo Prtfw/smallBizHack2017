@@ -5,7 +5,6 @@ const requestData = {
   idempotency_key: "xxx7777x",
   ask_for_shipping_address: false,
   merchant_support_email: "mns_catdogmice@yahoo.ca",
-
   order: {
     reference_id: "{222",
     line_items: [
@@ -27,6 +26,10 @@ request(
     url: url,
     method: "POST",
     json: requestData,
+    header: {
+      "content-type": "application/json",
+      access_token: "sandbox-sq0atb-ZV25PEBYRvbugnyFeUjT5A",
+    },
   },
   function(err, resp, body) {
     if (err) console.log("err", err);
