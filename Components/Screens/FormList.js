@@ -152,7 +152,6 @@ class FormList extends React.Component {
   };
 
   addNewSchema = schema => {
-    console.log({ schema });
     const newForm = {
       name: `Form ${this.state.forms.length + 1}`,
       schema: schema.map(s => {
@@ -165,7 +164,8 @@ class FormList extends React.Component {
       })
     };
     this.setState(prevState => ({
-      forms: prevState.forms.concat(newForm)
+      forms: prevState.forms.concat(newForm),
+      showFormBuilder: false
     }));
   };
 }

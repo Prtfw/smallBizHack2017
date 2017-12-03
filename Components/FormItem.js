@@ -1,5 +1,5 @@
-import React from "react";
-const t = require("tcomb-form-native");
+import React from 'react';
+const t = require('tcomb-form-native');
 const Form = t.form.Form;
 import {
   Text,
@@ -8,13 +8,13 @@ import {
   Alert,
   ScrollView,
   KeyboardAvoidingView
-} from "react-native";
+} from 'react-native';
 
 var InputType = t.enums({
-  checkbox: "Checkbox",
-  boolean: "Boolean",
-  textInput: "Text Input",
-  multipleChoice: "Multiple Choice"
+  checkbox: 'Checkbox',
+  textInput: 'Text Input',
+  number: 'Number',
+  multipleChoice: 'Multiple Choice'
 });
 
 var Item = t.struct({

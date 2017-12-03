@@ -14,12 +14,12 @@ import FormItem from '../FormItem';
 import AddButton from '../AddButton';
 import CreateButton from '../CreateButton';
 
-const Person = t.struct({
-  name: t.String, // a required string
-  surname: t.maybe(t.String), // an optional string
-  age: t.Number, // a required number
-  rememberMe: t.Boolean // a boolean
-});
+// const Person = t.struct({
+//   name: t.String, // a required string
+//   surname: t.maybe(t.String), // an optional string
+//   age: t.Number, // a required number
+//   rememberMe: t.Boolean // a boolean
+// });
 
 const options = {}; // optional rendering options (see documentation)
 
