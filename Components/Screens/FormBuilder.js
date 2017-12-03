@@ -26,12 +26,7 @@ const options = {}; // optional rendering options (see documentation)
 const defaultItem = { name: '', description: '', inputType: '' };
 
 class FormBuilder extends React.Component {
-  static navigationOptions = {
-    title: 'Form Builder'
-  };
-
   state = {
-    user: null,
     formItems: [defaultItem]
   };
 
@@ -65,14 +60,11 @@ class FormBuilder extends React.Component {
           style={{
             flex: 1
           }}
+          contentContainerStyle={{
+            paddingHorizontal: 12,
+            paddingVertical: 20
+          }}
         >
-          <View
-            style={{
-              alignItems: 'center',
-              justifyContent: 'center',
-              flex: 1
-            }}
-          />
           {this.state.formItems.map((formItem, index) => (
             <FormItem
               key={index}
@@ -85,10 +77,7 @@ class FormBuilder extends React.Component {
             onPress={() => this.addFormItem()}
             title={'Add new item'}
           />
-          <CreateButton
-            onPress={() => this.createForm()}
-            title={'Create form'}
-          />
+          <AddButton onPress={() => this.createForm()} title={'Create form'} />
         </ScrollView>
       </KeyboardAvoidingView>
     );

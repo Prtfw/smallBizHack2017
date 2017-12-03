@@ -1,11 +1,14 @@
-import React from "react";
-import style from "./../style";
-import { TouchableOpacity, Text } from "react-native";
+import React from 'react';
+import styles from './../style';
+import { TouchableOpacity, Text } from 'react-native';
 
 const AddButton = props => {
   return (
-    <TouchableOpacity onPress={props.onPress}>
-      <Text style={style.container}>{props.title}</Text>
+    <TouchableOpacity
+      onPress={props.onPress}
+      style={[styles.button, { marginBottom: 12 }]}
+    >
+      <Text style={styles.buttonText}>{props.title}</Text>
     </TouchableOpacity>
   );
 };

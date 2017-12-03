@@ -7,6 +7,7 @@ export default class TempForm extends React.Component {
   };
   render() {
     const { navigation: { state: { params } } } = this.props;
+    console.log('TempForm', { params });
     return (
       <View>
         <Text>Temp Form</Text>

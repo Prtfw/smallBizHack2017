@@ -5,9 +5,12 @@ import {
   FlatList,
   TouchableOpacity,
   StyleSheet,
-  Button
+  Button,
+  Modal
 } from 'react-native';
 import { Entypo, Ionicons } from '@expo/vector-icons';
+
+import FormBuilder from './FormBuilder';
 
 const styles = StyleSheet.create({
   row: {
@@ -25,6 +28,19 @@ const styles = StyleSheet.create({
   }
 });
 
+const getInputType = inputType => {
+  switch (inputType) {
+    case 'checkbox':
+      return 'Boolean';
+    case 'textInput':
+      return 'String';
+    case 'number':
+      return 'Number';
+    default:
+      return 'String';
+  }
+};
+
 class FormList extends React.Component {
   static navigationOptions = ({ navigation }) => {
     const { params = {} } = navigation.state;
@@ -40,20 +56,21 @@ class FormList extends React.Component {
   };
 
   state = {
+    showFormBuilder: false,
     forms: [
       {
         name: 'Form 1',
         schema: [
           {
             name: 'hasBackend',
-            label: 'Does the site need a backend?',
-            type: 'Boolean',
+            description: 'Does the site need a backend?',
+            inputType: 'Boolean',
             isOptional: false
           },
           {
             name: 'hasDesign',
-            label: 'Do you already have a design?',
-            type: 'Boolean',
+            description: 'Do you already have a design?',
+            inputType: 'Boolean',
             isOptional: false
           }
         ]
@@ -63,14 +80,14 @@ class FormList extends React.Component {
         schema: [
           {
             name: 'isInteractive',
-            label: 'Does the site need to be interactive?',
-            type: 'Boolean',
+            description: 'Does the site need to be interactive?',
+            inputType: 'Boolean',
             isOptional: false
           },
           {
             name: 'timeline',
-            label: 'How fast do you need it?',
-            type: 'String',
+            description: 'How fast do you need it?',
+            inputType: 'String',
             isOptional: false
           }
         ]
@@ -84,7 +101,7 @@ class FormList extends React.Component {
   }
 
   render() {
-    const { forms } = this.state;
+    const { forms, showFormBuilder } = this.state;
     const data = forms.map((f, i) => ({ ...f, key: i }));
     return (
       <View>
@@ -103,6 +120,21 @@ class FormList extends React.Component {
             </View>
           )}
         />
+        <Modal visible={showFormBuilder} onRequestClose={this.closeFormBuilder}>
+          <View
+            style={{
+              height: 44,
+              alignItems: 'flex-end'
+            }}
+          >
+            <Ionicons
+              name="ios-close-circle-outline"
+              style={{ padding: 12, fontSize: 30 }}
+              onPress={this.closeFormBuilder}
+            />
+          </View>
+          <FormBuilder onCreateForm={this.addNewSchema} />
+        </Modal>
       </View>
     );
   }
@@ -111,7 +143,30 @@ class FormList extends React.Component {
   };
 
   openFormBuilder = () => {
-    this.props.navigation.navigate('FormBuilder');
+    // this.props.navigation.navigate('FormBuilder');
+    this.setState({ showFormBuilder: true });
+  };
+
+  closeFormBuilder = () => {
+    this.setState({ showFormBuilder: false });
+  };
+
+  addNewSchema = schema => {
+    console.log({ schema });
+    const newForm = {
+      name: `Form ${this.state.forms.length + 1}`,
+      schema: schema.map(s => {
+        return {
+          name: s.name,
+          description: s.description,
+          inputType: getInputType(s.inputType),
+          isOptional: false
+        };
+      })
+    };
+    this.setState(prevState => ({
+      forms: prevState.forms.concat(newForm)
+    }));
   };
 }
 
