@@ -153,7 +153,7 @@ class FormList extends React.Component {
 
   addNewSchema = schema => {
     const newForm = {
-      name: `Form ${this.state.forms.length + 1}`,
+      name: `New Form`,
       schema: schema.map(s => {
         return {
           name: s.name,

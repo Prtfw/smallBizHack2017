@@ -23,8 +23,6 @@ var Item = t.struct({
   inputType: InputType // enum
 });
 
-const options = {}; // optional rendering options (see documentation)
-
 class FormItem extends React.Component {
   state = {
     user: null
@@ -37,6 +35,7 @@ class FormItem extends React.Component {
           value={this.props.value}
           type={Item}
           onChange={this.props.onChange}
+          options={this.props.options}
         />
       </View>
     );

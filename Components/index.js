@@ -9,3 +9,5 @@ export ConnectAccount from './Screens/ConnectAccount';
 export FormList from './Screens/FormList';
 
 export TempForm from './Screens/TempForm';
+
+// export FormDetail from './Screens/FormDetail';
