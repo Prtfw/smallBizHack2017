@@ -32,7 +32,11 @@ class FormBuilder extends React.Component {
     formItems: [defaultItem]
   };
 
-  addFormItem = () => {};
+  addFormItem = () => {
+    const items = this.state.formItems;
+    items.push(defaultItem);
+    this.setState({ formItems: items });
+  };
 
   onChange = (formItem, index) => {
     console.log(formItem.name, formItem.description, formItem.inputType, index);
@@ -69,7 +73,10 @@ class FormBuilder extends React.Component {
             />
           ))}
 
-          <AddButton onPress={() => alert("hi!")} title={"the title"} />
+          <AddButton
+            onPress={() => this.addFormItem()}
+            title={"Add new item"}
+          />
         </ScrollView>
       </KeyboardAvoidingView>
     );
