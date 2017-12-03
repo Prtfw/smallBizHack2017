@@ -6,16 +6,12 @@ import { TabNavigator, TabBarBottom } from "react-navigation";
 import Colors from "../constants/Colors";
 
 import FormBuilderScreen from "../Components/Screens/FormBuilder";
-// import FormsScreen from "../Components/Screens/Form";
 
 export default TabNavigator(
   {
     FormBuilder: {
       screen: FormBuilderScreen
     }
-    // Forms: {
-    //   screen: FormsScreen
-    // }
   },
   {
     navigationOptions: ({ navigation }) => ({
@@ -29,12 +25,6 @@ export default TabNavigator(
                 ? `ios-information-circle${focused ? "" : "-outline"}`
                 : "md-information-circle";
             break;
-          // case "Forms":
-          //   iconName =
-          //     Platform.OS === "ios"
-          //       ? `ios-link${focused ? "" : "-outline"}`
-          //       : "md-link";
-          //   break;
         }
         return (
           <Ionicons

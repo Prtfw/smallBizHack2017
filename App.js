@@ -52,11 +52,19 @@ class App extends React.Component {
         )}
         <Button onPress={this._connectIntuit} title={'Connect to QuickBooks'} />
       <Button onPress={this._skip} title={'Skip'} /> */}
-        <Text style={{color: '#4a4a4a', fontWeight: 'bold'}}> This is a header color</Text>
+        <Text style={{color: '#4a4a4a', fontWeight: 'bold'}}> 
+          This is a header color
+        </Text>
         <FormBuilder onCreateForm={form => this.onCreateForm(form)} />
         <TouchableOpacity style={style.button}>
           <Text style={{color: 'white'}}>Hello Unicorns</Text>
         </TouchableOpacity>
+
+        <RootNavigator />
+        <Button onPress={this._skip} title={'Skip'}>
+          <Text>Hello</Text>
+        </Button>
+
       </View>
     );
   }
@@ -90,14 +98,3 @@ class App extends React.Component {
 }
 
 export default App;
-// StackNavigator({
-//   Home: {
-//     screen: HomeScreen
-//   },
-//   Login: {
-//     screen: IntuitAuth
-//   },
-//   Main: {
-//     screen: Main
-//   }
-// });
