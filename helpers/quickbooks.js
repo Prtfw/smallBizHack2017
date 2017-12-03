@@ -40,8 +40,8 @@ const credentials = {
   client_id: QB.clientID,
   scope: 'com.intuit.quickbooks.accounting',
   response_type: 'code',
-  state: 'yolo',
   redirect_uri: redirectUrl
+  // state: 'yolo',
 };
 
 const authorizationUrl = `${authorizationEndpoint}?${querystring.stringify(
@@ -49,7 +49,7 @@ const authorizationUrl = `${authorizationEndpoint}?${querystring.stringify(
 )}`;
 
 function fetchToken(body, currentAuth) {
-  console.log('fetchToken', { body, currentAuth });
+  // console.log('fetchToken', { body, currentAuth });
   return fetch(tokenEndpoint, {
     method: 'POST',
     headers,
@@ -74,7 +74,7 @@ function fetchToken(body, currentAuth) {
           x_refresh_token_expires_in,
           token_type
         });
-        console.log('fetchToken', { authParams });
+        // console.log('fetchToken', { authParams });
         if (authParams.realmId && authParams.refresh_token) {
           setUser({ qb: authParams });
         }
@@ -155,20 +155,27 @@ class QBClient {
             .then(response => {
               if (response.status === 401) {
                 console.log('QBClient need to rerequest token');
-                // fetchTokenWithRefreshToken(authParams)
-                //   .then(newAuth => {
-                //     console.log('newAuth', newAuth);
-                //     const newHeaders = {...req.headers, {Authorization: 'Bearer ' + newAuth.access_token}}
-                //     return fetch(url, newReq);
-                //   })
-                //   .catch(reject);
+                fetchTokenWithRefreshToken(authParams)
+                  .then(newAuth => {
+                    console.log('newAuth', newAuth);
+                    const newHeaders = {
+                      ...req.headers,
+                      Authorization: 'Bearer ' + newAuth.access_toke
+                    };
+                    const newReq = {
+                      ...req,
+                      headers: newHeaders
+                    };
+                    return fetch(url, newReq).then(response => response.json());
+                  })
+                  .catch(reject);
               } else {
                 return response.json();
               }
             })
             .then(result => {
               console.log('QBClient result', result);
-              return result;
+              resolve(result);
             })
             .catch(err => {
               console.warn('QBClient error', err);
